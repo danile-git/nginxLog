@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	<cluster>
+
+<!-- storm -->
+	<property>
+			<name>storm.spout.size</name>
+			<value>3</value>
+		</property>
+
+	<property>
+			<name>storm.bolt.size</name>
+			<value>10</value>
+		</property>
+
+	<property>
+			<name>storm.work.size</name>
+			<value>5</value>
+		</property>
+	<property>
+			<name>storm.num.ackers</name>
+			<value>0</value>
+		</property>
+
+	<property>
+			<name>zookeeper.quorum</name>
+			<value>master2:2181,node1:2181,node2:2181,node3:2181,node4:2181</value>
+		</property>
+		<property>
+			<name>zookeeper.path</name>
+			<value>/nginxlog/config</value>
+		</property>
+		
+	<property>
+			<name>storm.distribute</name>
+			<value>true</value>
+		</property>
+	<property>
+			<name>storm.nimbus</name>
+			<value>node1</value>
+		</property>
+		
+		<!--  nimbus.seeds: ["node1","node2"] -->
+		<property>
+			<name>storm.seeds</name>
+			<value>["node1","node2"]</value>
+		</property>
+	<property>
+			<name>storm.port</name>
+			<value>9092</value>
+		</property>
+	<property>
+			<name>storm.hosts</name>
+			<value>node2,node3,node4,node5,node6</value>
+		</property>
+<!-- hbase -->
+	<property>
+			<name>hbase.batch.size</name>
+			<value>1000</value>
+		</property>	
+		<!--seconds-->
+	<property>
+			<name>task.batch.time</name>
+			<value>300</value>
+		</property>	
+
+	<property>
+			<name>bootstrap.servers</name>
+			<value>master1:9092,master2:9092,node1:9092,node2:9092,node3:9092,node4:9092,node5:9092,node6:9092</value>
+		</property>
+	<property>
+			<name>kafka.topic</name>
+			<value>xinhua</value>
+		</property>
+	<property>
+			<name>kafka.topic.group</name>
+			<value>group-2</value>
+		</property>
+	<property>
+			<name>zookeeper.session.timeout.ms</name>
+			<value>15000</value>
+		</property>
+	<property>
+			<name>zookeeper.sync.time.ms</name>
+			<value>200</value>
+		</property>
+	<property>
+			<name>auto.commit.interval.ms</name>
+			<value>1000</value>
+		</property>	
+	<property>
+			<name>auto.offset.reset</name>
+			<value>smallest</value>
+		</property>
+	<property>
+			<name>serializer.class</name>
+			<value>kafka.serializer.StringEncoder</value>
+		</property>
+	<property>
+			<name>rebalance.max.retries</name>
+			<value>5</value>
+		</property>
+	<property>
+			<name>rebalance.backoff.ms</name>
+			<value>2200</value>
+		</property>		
+	</cluster>	
