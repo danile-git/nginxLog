@@ -16,7 +16,7 @@ import backtype.storm.topology.TopologyBuilder;
 
 public class FlumeKafkaTopology {
 	private final static Logger logger = LoggerFactory.getLogger(FlumeKafkaTopology.class);
-
+//wssssss
 	public static void main(String[] _arguments) throws InterruptedException, AlreadyAliveException,
 			InvalidTopologyException {
 
