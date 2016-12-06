@@ -25,6 +25,10 @@
 			<name>zookeeper.quorum</name>
 			<value>master2:2181,node1:2181,node2:2181,node3:2181,node4:2181</value>
 		</property>
+	<property>
+			<name>cfg.zookeeper.ms</name>
+			<value>20000</value>
+		</property>
 		<property>
 			<name>zookeeper.path</name>
 			<value>/nginxlog/config</value>
@@ -63,6 +67,7 @@
 			<value>300</value>
 		</property>	
 
+<!-- kafka -->
 	<property>
 			<name>bootstrap.servers</name>
 			<value>master1:9092,master2:9092,node1:9092,node2:9092,node3:9092,node4:9092,node5:9092,node6:9092</value>
@@ -73,7 +78,7 @@
 		</property>
 	<property>
 			<name>kafka.topic.group</name>
-			<value>group-2</value>
+			<value>group-1</value>
 		</property>
 	<property>
 			<name>zookeeper.session.timeout.ms</name>

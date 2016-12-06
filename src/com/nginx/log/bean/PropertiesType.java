@@ -8,8 +8,9 @@ import com.nginx.log.core.LogBoltSave;
 import com.nginx.log.core.LogSpout;
 
 public class PropertiesType implements Serializable{
-	//Local
+	//Local storm.cfg.zkMs
 	public static final String ZOOKEEPER_PATH = "zookeeper.path";
+	public static final String CFG_ZOOKEEPER_MS = "cfg.zookeeper.ms";
 	/**
 	 * ´¢´æ---->hbase mysql »ò hdfs
 	 **/

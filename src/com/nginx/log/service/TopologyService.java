@@ -9,9 +9,14 @@ import com.nginx.log.util.Config;
 
 public class TopologyService {
 
-	String[] propertys = { PropertiesType.STORM_SPOUT_SIZE, PropertiesType.STORM_BOLT_SIZE,
-			PropertiesType.STORM_WORK_SIZE, PropertiesType.STORM_NUM_ACKERS, PropertiesType.STORM_DISTRIBUTE,
-			PropertiesType.STORM_NIMBUS };
+	String[] propertys = {
+			PropertiesType.STORM_SPOUT_SIZE,
+			PropertiesType.STORM_BOLT_SIZE,
+			PropertiesType.STORM_WORK_SIZE,
+			PropertiesType.STORM_NUM_ACKERS, 
+			PropertiesType.STORM_DISTRIBUTE,
+			PropertiesType.STORM_NIMBUS 
+		};
 	zookeeperService zkService = new zookeeperService();
 	public TopologyPro init() {
 		TopologyPro topologyPro = new TopologyPro();

@@ -60,7 +60,7 @@ public class LogSpout extends BaseRichSpout {
 		 case HDFS:
 		 break;
 		 case KAFKA:
-		 consumerIterator =new KakfaService().init();
+			 consumerIterator =new KakfaService().init();
 		 break;
 		 }
 		this.collector = collector;

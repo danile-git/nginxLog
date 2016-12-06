@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 
 import org.apache.log4j.Logger;
+import org.apache.storm.zookeeper.ZooKeeper;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.KeeperException;
 import org.apache.zookeeper.ZooDefs.Ids;
@@ -14,38 +15,44 @@ import org.slf4j.LoggerFactory;
 import backtype.storm.command.config_value__init;
 
 import com.nginx.log.bean.PropertiesType;
+import com.nginx.log.bean.Type;
+import com.nginx.log.bean.ZookeeperPro;
 import com.nginx.log.util.Config;
 import com.nginx.log.util.IOUtil;
 import com.nginx.log.util.zookeeperUtil;
 
 public class zookeeperService implements Serializable {
 	zookeeperUtil zookeeper = new zookeeperUtil();
-	public static String zookeeperPath = "/nginxlog/config";
+
 	Config config = new Config();
-	HashMap<String, String> hashMapConfig = new HashMap<String, String>();
+	static HashMap<String, String> hashMapConfig = new HashMap<String, String>();
+	static ZookeeperPro zookeeperPro = null;
 	private final org.slf4j.Logger logger = LoggerFactory.getLogger(zookeeperUtil.class);
 
 	public void init() {
 		try {
-			InputStream inputStream = IOUtil.fileInputStream("/core.xml");
-			byte[] confbyte = IOUtil.readStream(inputStream);
-			hashMapConfig = config.loadConfig(IOUtil.byteTOInputStream(confbyte));
+			byte[] content = covertFileToStream();
+			zookeeperPro = new ZookeeperPro();
+			hashMapConfig = config.loadConfig(IOUtil.byteTOInputStream(content));
+			zookeeperPro.setZookeeper_path(getConf(PropertiesType.ZOOKEEPER_PATH));
+			zookeeperPro.setZookeeper_quorum(getConf(PropertiesType.ZOOKEEPER_QUORUM));
+			zookeeperPro.setSession_time(Integer.parseInt(getConf(PropertiesType.CFG_ZOOKEEPER_MS)));
 
-			zookeeper.connect(getConf(PropertiesType.ZOOKEEPER_QUORUM));
-			//zookeeperPath = getConf(PropertiesType.ZOOKEEPER_PATH);
-			// System.out.println("-------deleteNode---");
-			zookeeper.deleteNode(zookeeperPath);
-			// System.out.println("----deleteNode done---");
-			// System.out.println("------create----");
-			zookeeper.getZooKeeper().create(zookeeperPath, confbyte, Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
-			// System.out.println("------create done-----");
-			_toString();
-			inputStream.close();
+			zookeeper.initZooKeeper(zookeeperPro);
+			zookeeper.deleteNode(zookeeperPro.getZookeeper_path());
+			zookeeper.createNode(zookeeperPro, content);
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+		System.out.println(e.getMessage());
 		}
+	}
+
+	private byte[] covertFileToStream() throws Exception {
+		InputStream inputStream = IOUtil.fileInputStream("/core.xml");
+		byte[] confbyte = IOUtil.readStream(inputStream);
+		inputStream.close();
+		return confbyte;
 	}
 
 	public void _toString() {
@@ -55,26 +62,43 @@ public class zookeeperService implements Serializable {
 		}
 	}
 
+	private ZookeeperPro getZookeeperCfg() {
+		if (zookeeperPro != null) {
+			return zookeeperPro;
+		} else {
+			try {
+				byte[] content = covertFileToStream();
+				zookeeperPro = new ZookeeperPro();
+				HashMap<String, String> hashCfg = config.loadConfig(IOUtil.byteTOInputStream(content));
+				zookeeperPro.setZookeeper_path(hashCfg.get(PropertiesType.ZOOKEEPER_PATH));
+				zookeeperPro.setZookeeper_quorum(hashCfg.get(PropertiesType.ZOOKEEPER_QUORUM));
+				zookeeperPro.setSession_time(Integer.parseInt(hashCfg.get(PropertiesType.CFG_ZOOKEEPER_MS)));
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+			}
+
+		}
+		return zookeeperPro;
+	}
+
 	public String getConf(String key) {
-		String msString = "";
 		try {
 			if (hashMapConfig.size() <= 0) {
-				byte[] result = zookeeper.getZooKeeper().getData(zookeeperPath, false, null);
+				logger.info("loading data from zk" + this.toString());			
+				byte[] result = zookeeper.initZooKeeper(getZookeeperCfg()).getData(zookeeperPro.getZookeeper_path(), false, null);
 				InputStream inputStream = IOUtil.byteTOInputStream(result);
 				hashMapConfig = config.loadConfig(inputStream);
-				msString += result.toString();
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			msString += "ex" + e.getMessage();
 			logger.error(e.getMessage());
 		}
 		if (hashMapConfig.containsKey(key)) {
 			return hashMapConfig.get(key);
 		} else {
-			throw new RuntimeException(String.format("未找到相关配置项: %s size" + hashMapConfig.size() + "  --->" + msString,
-					key));
+			throw new RuntimeException(String.format("未找到相关配置项: %s size", key));
 		}
 
 	}
+
+
 }

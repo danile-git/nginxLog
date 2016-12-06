@@ -23,6 +23,7 @@ public class FlumeKafkaTopology {
 		try {
 			zookeeperService zkService = new zookeeperService();
 			zkService.init();
+			zkService._toString();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 			return;

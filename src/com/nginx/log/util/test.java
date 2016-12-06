@@ -45,10 +45,10 @@ public class test {
 		KAFKAUtil kafka = new KAFKAUtil();
 		Producer<String, String> producer = kafka.getProducer();
 		int stage=0;
-	//while(true){
+	while(true){
 		stage++;
 		//	List<Put> puts=new ArrayList<Put>();
-		for (int i = 0; i <1; i++) {
+		for (int i = 0; i <1000; i++) {
 			Thread thread = new TestRunnable(kafka, producer, topic, UUID.randomUUID());
 			thread.run();
 			//System.out.println(i);
@@ -61,7 +61,7 @@ public class test {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	//}
+	}
 
 		// HBaseService hBaseService = new HBaseService();
 		// HashMap<String, String> databaseHashMap;

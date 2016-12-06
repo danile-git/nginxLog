@@ -4,22 +4,28 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.concurrent.CountDownLatch;
 
+import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.Watcher.Event.KeeperState;
+import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.ZooKeeper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.nginx.log.bean.ZookeeperPro;
+
 public class zookeeperUtil implements Watcher, Serializable {
 
 	private final Logger logger = LoggerFactory.getLogger(zookeeperUtil.class);// Logger.getLogger(zookeeperUtil.class);
-	private static String zkQu = "master2:2181,node1:2181,node2:2181,node3:2181,node4:2181";
 
-	public ZooKeeper getZooKeeper() {
+	// private static String zkQu =
+	// "master2:2181,node1:2181,node2:2181,node3:2181,node4:2181";
+
+	public ZooKeeper initZooKeeper(ZookeeperPro zookeeper) {
 		if (!isConnected()) {
 			try {
-				connect(zkQu);
+				connect(zookeeper);
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 				logger.error(e.getMessage());
@@ -29,16 +35,15 @@ public class zookeeperUtil implements Watcher, Serializable {
 	}
 
 	// 缓存时间
-	private static final int SESSION_TIME = 20000;
+	// private static final int SESSION_TIME = 20000;
 	private ZooKeeper zooKeeper;
 	// protected CountDownLatch countDownLatch = new CountDownLatch(1);
 	private boolean flg = true;
 
 	// 连接zk集群
-	public void connect(String hosts) throws IOException, InterruptedException {
+	private void connect(ZookeeperPro zookeeperPro) throws IOException, InterruptedException {
 		// zkQu = hosts;
-		zooKeeper = new ZooKeeper(hosts, SESSION_TIME, this);
-
+		zooKeeper = new ZooKeeper(zookeeperPro.getZookeeper_quorum(), zookeeperPro.getSession_time(), this);
 		System.out.println("Connect to zookeeper..");
 		while (flg) {
 			Thread.sleep(500);
@@ -47,6 +52,21 @@ public class zookeeperUtil implements Watcher, Serializable {
 		// System.out.println(flg);
 		// countDownLatch.await();
 	}
+
+	// // 连接zk集群
+	// public void connect(String hosts) throws IOException,
+	// InterruptedException {
+	// // zkQu = hosts;
+	// zooKeeper = new ZooKeeper(hosts, SESSION_TIME, this);
+	//
+	// System.out.println("Connect to zookeeper..");
+	// while (flg) {
+	// Thread.sleep(500);
+	// System.out.print(".");
+	// }
+	// // System.out.println(flg);
+	// // countDownLatch.await();
+	// }
 
 	// zk处理
 	@Override
@@ -88,6 +108,18 @@ public class zookeeperUtil implements Watcher, Serializable {
 			System.out.println(e.getMessage());
 		}
 		return false;
+	}
+
+	public void createNode(ZookeeperPro zookeeperPro, byte[] content) {
+		if (isConnected()) {
+			try {
+				zooKeeper.create(zookeeperPro.getZookeeper_path(), content, Ids.OPEN_ACL_UNSAFE, CreateMode.PERSISTENT);
+			} catch (Exception e) {
+				logger.error(e.getMessage());
+
+			}
+		}
+		System.out.println(String.format("zookeeper state = [{%s}]", zooKeeper.getState()));
 	}
 
 	public boolean deleteNode(String path) {
