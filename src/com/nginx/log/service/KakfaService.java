@@ -7,7 +7,6 @@ import kafka.consumer.KafkaStream;
 
 import com.nginx.log.bean.Kafka;
 import com.nginx.log.bean.PropertiesType;
-import com.nginx.log.util.Config;
 import com.nginx.log.util.KAFKAUtil;
 
 public class KakfaService {

@@ -1,26 +1,9 @@
 package com.nginx.log.util;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.UUID;
 
 import kafka.javaapi.producer.Producer;
 
-import org.apache.hadoop.fs.FileStatus;
-import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.hbase.KeyValue;
-import org.apache.hadoop.hbase.client.HTable;
-import org.apache.hadoop.hbase.client.Put;
-import org.apache.hadoop.hbase.client.Result;
-import org.apache.hadoop.hbase.client.ResultScanner;
-import org.apache.hadoop.hbase.util.Bytes;
-
-import com.nginx.log.bean.NginxJSON;
-import com.nginx.log.bean.ReturnInterchange;
-import com.nginx.log.service.HBaseService;
 //import compojure.core.ANY;
 
 public class test {
@@ -45,10 +28,10 @@ public class test {
 		KAFKAUtil kafka = new KAFKAUtil();
 		Producer<String, String> producer = kafka.getProducer();
 		int stage=0;
-	//while(true){
+	while(true){
 		stage++;
 		//	List<Put> puts=new ArrayList<Put>();
-		for (int i = 0; i <1; i++) {
+		for (int i = 0; i <1000; i++) {
 			Thread thread = new TestRunnable(kafka, producer, topic, UUID.randomUUID());
 			thread.run();
 			//System.out.println(i);
@@ -61,7 +44,7 @@ public class test {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	//}
+	}
 
 		// HBaseService hBaseService = new HBaseService();
 		// HashMap<String, String> databaseHashMap;

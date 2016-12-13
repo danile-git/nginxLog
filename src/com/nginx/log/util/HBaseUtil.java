@@ -27,8 +27,6 @@ import org.slf4j.LoggerFactory;
 
 import com.nginx.log.bean.PropertiesType;
 import com.nginx.log.bean.ReturnInterchange;
-import com.nginx.log.core.LogBoltBackup;
-
 public class HBaseUtil implements Serializable {
 
 	private static HConnection connection = null;
@@ -348,6 +346,7 @@ public class HBaseUtil implements Serializable {
 			admin.createTable(tableDesc);
 			System.out.println("create table ok.");
 		}
+		admin.close();
 	}
 
 	/**
@@ -360,6 +359,7 @@ public class HBaseUtil implements Serializable {
 		admin.disableTable(tablename);
 		admin.deleteTable(tablename);
 		System.out.println("drop table ok.");
+		admin.close();
 	}
 
 }

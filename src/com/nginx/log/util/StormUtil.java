@@ -6,12 +6,12 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Timer;
 
-import backtype.storm.generated.ClusterSummary;
-import backtype.storm.generated.ErrorInfo;
-import backtype.storm.generated.TopologyInfo;
-import backtype.storm.generated.TopologySummary;
-import backtype.storm.utils.NimbusClient;
-import backtype.storm.utils.Utils;
+import org.apache.storm.generated.ClusterSummary;
+import org.apache.storm.generated.ErrorInfo;
+import org.apache.storm.generated.TopologyInfo;
+import org.apache.storm.generated.TopologySummary;
+import org.apache.storm.utils.NimbusClient;
+import org.apache.storm.utils.Utils;
 
 public class StormUtil{
 	// NIMBUSµÄÐÅÏ¢

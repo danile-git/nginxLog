@@ -41,18 +41,18 @@ public class HBaseService  implements Serializable{
 	public static final byte[] QUALIFER_HTTP_REFERER = "http_referer".getBytes();
 	public static final byte[] QUALIFER_UPSTREAM_ADDR = "upstream_addr".getBytes();
 
-	String[] propertys = { 
-			PropertiesType.HBASE_BATCH_SIZE,
-			PropertiesType.TASK_BATCH_TIME
-	};
-	zookeeperService zkService = new zookeeperService();
-
-	public HBasePro init() {
-		HBasePro hbasePro = new HBasePro();
-		hbasePro.setHbase_batch_size(Integer.parseInt(zkService.getConf(propertys[0])));
-		 hbasePro.setHbase_batch_time(Integer.parseInt(zkService.getConf(propertys[1])));
-		return hbasePro;
-	}
+//	String[] propertys = { 
+//			PropertiesType.HBASE_BATCH_SIZE,
+//			PropertiesType.TASK_BATCH_TIME
+//	};
+//	zookeeperService zkService = new zookeeperService();
+//
+//	public HBasePro init() {
+//		HBasePro hbasePro = new HBasePro();
+//		hbasePro.setHbase_batch_size(Integer.parseInt(zkService.getConf(propertys[0])));
+//		 hbasePro.setHbase_batch_time(Integer.parseInt(zkService.getConf(propertys[1])));
+//		return hbasePro;
+//	}
 
 	public void put(NginxJSON nginxJSON) {
 		try {

@@ -5,14 +5,12 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
 	<classpathentry kind="lib" path="lib/meta-index"/>
 	<classpathentry kind="lib" path="lib/activation-1.1.jar"/>
-	<classpathentry kind="lib" path="lib/asm-4.0.jar"/>
 	<classpathentry kind="lib" path="lib/avro-1.5.3.jar"/>
 	<classpathentry kind="lib" path="lib/avro-ipc-1.5.3.jar"/>
 	<classpathentry kind="lib" path="lib/carbonite-1.4.0.jar"/>
 	<classpathentry kind="lib" path="lib/chill-java-0.3.5.jar"/>
 	<classpathentry kind="lib" path="lib/clj-stacktrace-0.2.2.jar"/>
 	<classpathentry kind="lib" path="lib/clj-time-0.4.1.jar"/>
-	<classpathentry kind="lib" path="lib/clojure-1.5.1.jar"/>
 	<classpathentry kind="lib" path="lib/clout-1.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/commons-beanutils-1.7.0.jar"/>
 	<classpathentry kind="lib" path="lib/commons-cli-1.2.jar"/>
@@ -32,7 +30,6 @@
 	<classpathentry kind="lib" path="lib/core.incubator-0.1.0.jar"/>
 	<classpathentry kind="lib" path="lib/curator-client-1.3.3.jar"/>
 	<classpathentry kind="lib" path="lib/curator-framework-1.3.3.jar"/>
-	<classpathentry kind="lib" path="lib/disruptor-2.10.4.jar"/>
 	<classpathentry kind="lib" path="lib/dnsns.jar"/>
 	<classpathentry kind="lib" path="lib/ezmorph-1.0.3.jar"/>
 	<classpathentry kind="lib" path="lib/guava-11.0.2.jar"/>
@@ -58,7 +55,6 @@
 	<classpathentry kind="lib" path="lib/json-lib-2.2.3-jdk15.jar"/>
 	<classpathentry kind="lib" path="lib/json-simple-1.1.jar"/>
 	<classpathentry kind="lib" path="lib/kafka_2.8.0-0.8.0.jar"/>
-	<classpathentry kind="lib" path="lib/kryo-2.21.jar"/>
 	<classpathentry kind="lib" path="lib/localedata.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-over-slf4j-1.6.6.jar"/>
 	<classpathentry kind="lib" path="lib/logback-classic-1.0.13.jar"/>
@@ -66,10 +62,8 @@
 	<classpathentry kind="lib" path="lib/math.numeric-tower-0.0.1.jar"/>
 	<classpathentry kind="lib" path="lib/metrics-core-2.1.2.jar"/>
 	<classpathentry kind="lib" path="lib/metrics-core-2.2.0.jar"/>
-	<classpathentry kind="lib" path="lib/minlog-1.2.jar"/>
 	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.7-bin.jar"/>
 	<classpathentry kind="lib" path="lib/netty-3.6.2.Final.jar"/>
-	<classpathentry kind="lib" path="lib/objenesis-1.2.jar"/>
 	<classpathentry kind="lib" path="lib/parquet-avro.jar"/>
 	<classpathentry kind="lib" path="lib/parquet-cascading.jar"/>
 	<classpathentry kind="lib" path="lib/parquet-column.jar"/>
@@ -91,7 +85,6 @@
 	<classpathentry kind="lib" path="lib/parquet-thrift.jar"/>
 	<classpathentry kind="lib" path="lib/parquet-tools.jar"/>
 	<classpathentry kind="lib" path="lib/protobuf-java-2.5.0.jar"/>
-	<classpathentry kind="lib" path="lib/reflectasm-1.07-shaded.jar"/>
 	<classpathentry kind="lib" path="lib/ring-core-1.1.5.jar"/>
 	<classpathentry kind="lib" path="lib/ring-devel-0.3.11.jar"/>
 	<classpathentry kind="lib" path="lib/ring-jetty-adapter-0.3.11.jar"/>
@@ -102,7 +95,6 @@
 	<classpathentry kind="lib" path="lib/snakeyaml-1.11.jar"/>
 	<classpathentry kind="lib" path="lib/snappy-java-1.0.3.2.jar"/>
 	<classpathentry kind="lib" path="lib/stax-api-1.0.1.jar"/>
-	<classpathentry kind="lib" path="lib/storm-core-0.9.6.jar"/>
 	<classpathentry kind="lib" path="lib/storm-kafka-0.8-plus-0.3.0-SNAPSHOT.jar"/>
 	<classpathentry kind="lib" path="lib/sunec.jar"/>
 	<classpathentry kind="lib" path="lib/sunjce_provider.jar"/>
@@ -115,5 +107,16 @@
 	<classpathentry kind="lib" path="lib/zipfs.jar"/>
 	<classpathentry kind="lib" path="lib/zkclient-0.3.jar"/>
 	<classpathentry kind="lib" path="lib/zookeeper-3.4.5.jar"/>
+	<classpathentry kind="lib" path="lib/asm-5.0.3.jar"/>
+	<classpathentry kind="lib" path="lib/clojure-1.7.0.jar"/>
+	<classpathentry kind="lib" path="lib/kryo-3.0.3.jar"/>
+	<classpathentry kind="lib" path="lib/minlog-1.3.0.jar"/>
+	<classpathentry kind="lib" path="lib/objenesis-2.1.jar"/>
+	<classpathentry kind="lib" path="lib/reflectasm-1.10.1.jar"/>
+	<classpathentry kind="lib" path="lib/storm-core-1.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/storm-rename-hack-1.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/disruptor-3.3.2.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-api-2.1.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-core-2.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

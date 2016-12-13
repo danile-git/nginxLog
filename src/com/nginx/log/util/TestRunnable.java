@@ -1,10 +1,6 @@
 package com.nginx.log.util;
 
-import java.io.IOException;
 import java.util.UUID;
-
-import com.nginx.log.service.HBaseService;
-
 
 
 //import backtype.storm.timer.schedule_recurring.this__1647;

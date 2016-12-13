@@ -3,7 +3,7 @@ package com.nginx.log.core;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Properties;
+
 import java.util.UUID;
 
 import org.apache.log4j.Logger;
@@ -14,18 +14,15 @@ import com.nginx.log.service.KakfaService;
 import com.nginx.log.util.*;
 
 import kafka.consumer.ConsumerIterator;
-import kafka.consumer.KafkaStream;
-import kafka.javaapi.producer.Producer;
-import backtype.storm.spout.SpoutOutputCollector;
-import backtype.storm.task.OutputCollector;
-import backtype.storm.task.TopologyContext;
-import backtype.storm.topology.IRichSpout;
-import backtype.storm.topology.OutputFieldsDeclarer;
-import backtype.storm.topology.base.BaseRichBolt;
-import backtype.storm.topology.base.BaseRichSpout;
-import backtype.storm.tuple.Fields;
-import backtype.storm.tuple.Tuple;
-import backtype.storm.tuple.Values;
+
+import org.apache.storm.spout.SpoutOutputCollector;
+
+import org.apache.storm.task.TopologyContext;
+import org.apache.storm.topology.OutputFieldsDeclarer;
+
+import org.apache.storm.topology.base.BaseRichSpout;
+import org.apache.storm.tuple.Fields;
+import org.apache.storm.tuple.Values;
 
 public class LogSpout extends BaseRichSpout {
 
@@ -39,7 +36,7 @@ public class LogSpout extends BaseRichSpout {
 
 	@Override
 	public void nextTuple() {
-		//logger.info("-------------------KAFKA-Spout Tuple------------------------");
+	//logger.info("-------------------KAFKA-Spout Tuple------------------------");
 		switch (PropertiesType.SOURCE_TYPE) {
 		case HDFS:
 			break;
@@ -60,7 +57,7 @@ public class LogSpout extends BaseRichSpout {
 		 case HDFS:
 		 break;
 		 case KAFKA:
-		 consumerIterator =new KakfaService().init();
+			 consumerIterator =new KakfaService().init();
 		 break;
 		 }
 		this.collector = collector;

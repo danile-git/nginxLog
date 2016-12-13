@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import parquet.pig.summary.Summary.Final;
 
 public class DelayTimerUtil {
 

@@ -1,14 +1,9 @@
 package com.nginx.log.core;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import com.nginx.log.bean.PropertiesType;
 import com.nginx.log.service.zookeeperService;
-import com.nginx.log.util.Config;
 import com.nginx.log.util.DelayTimerUtil;
 import com.nginx.log.util.ITask;
 import com.nginx.log.util.TaskData;

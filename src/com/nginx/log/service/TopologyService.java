@@ -1,21 +1,23 @@
 package com.nginx.log.service;
 
-import java.io.Serializable;
-
 import com.nginx.log.bean.Booleans;
 import com.nginx.log.bean.PropertiesType;
 import com.nginx.log.bean.TopologyPro;
-import com.nginx.log.util.Config;
 
 public class TopologyService {
 
-	String[] propertys = { PropertiesType.STORM_SPOUT_SIZE, PropertiesType.STORM_BOLT_SIZE,
-			PropertiesType.STORM_WORK_SIZE, PropertiesType.STORM_NUM_ACKERS, PropertiesType.STORM_DISTRIBUTE,
-			PropertiesType.STORM_NIMBUS };
+	String[] propertys = {
+			PropertiesType.STORM_SPOUT_SIZE,
+			PropertiesType.STORM_BOLT_SIZE,
+			PropertiesType.STORM_WORK_SIZE,
+			PropertiesType.STORM_NUM_ACKERS, 
+			PropertiesType.STORM_DISTRIBUTE,
+			PropertiesType.STORM_SEEDS 
+		};
 	zookeeperService zkService = new zookeeperService();
 	public TopologyPro init() {
 		TopologyPro topologyPro = new TopologyPro();
-		topologyPro.setStorm_nimbus(zkService.getConf(propertys[5]));
+		topologyPro.setStorm_seeds(zkService.getConf(propertys[5]));
 		String distribute = zkService.getConf(propertys[4]).toLowerCase();
 		Booleans booleans = distribute.equals(Booleans.False.getValue()) ? Booleans.False : distribute
 				.equals(Booleans.True.getValue()) ? Booleans.True : Booleans.None;

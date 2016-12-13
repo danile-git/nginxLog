@@ -6,7 +6,7 @@ public class TopologyPro {
 	private int storm_work_size;
 	private int storm_num_ackers;
 	private Booleans storm_distribute;
-	private String storm_nimbus;
+	private String storm_seeds;
 	
 	public int getStorm_spout_size() {
 		return storm_spout_size;
@@ -32,11 +32,11 @@ public class TopologyPro {
 	public void setStorm_num_ackers(int storm_num_ackers) {
 		this.storm_num_ackers = storm_num_ackers;
 	}
-	public String getStorm_nimbus() {
-		return storm_nimbus;
+	public String getStorm_seeds() {
+		return storm_seeds;
 	}
-	public void setStorm_nimbus(String storm_nimbus) {
-		this.storm_nimbus = storm_nimbus;
+	public void setStorm_seeds(String storm_seeds) {
+		this.storm_seeds = storm_seeds;
 	}
 	public Booleans getStorm_distribute() {
 		return storm_distribute;

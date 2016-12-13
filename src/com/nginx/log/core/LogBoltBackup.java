@@ -1,40 +1,31 @@
 package com.nginx.log.core;
 
 import java.io.IOException;
-import java.io.Serializable;
-import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.swing.text.DefaultEditorKit.InsertBreakAction;
-
-import org.apache.log4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import net.sf.json.JSONObject;
-
-import com.nginx.log.bean.HBasePro;
 import com.nginx.log.bean.InsertType;
-import com.nginx.log.bean.NginxJSON;
 import com.nginx.log.bean.PropertiesType;
 import com.nginx.log.service.HBaseService;
+import com.nginx.log.service.zookeeperService;
 import com.nginx.log.util.ITask;
 
-import backtype.storm.task.OutputCollector;
-import backtype.storm.task.TopologyContext;
-import backtype.storm.topology.OutputFieldsDeclarer;
-import backtype.storm.topology.base.BaseRichBolt;
-import backtype.storm.tuple.Tuple;
-import backtype.storm.tuple.Values;
+import org.apache.storm.task.OutputCollector;
+import org.apache.storm.task.TopologyContext;
+import org.apache.storm.topology.OutputFieldsDeclarer;
+import org.apache.storm.topology.base.BaseRichBolt;
+import org.apache.storm.tuple.Tuple;
 
 public class LogBoltBackup extends BaseRichBolt implements ITask {
-	static HBaseService hbaseService = null;
-	HBasePro hbasePro;
+	HBaseService hbaseService =null;
+//	HBasePro hbasePro;
 	OutputCollector collector;
 	Date currentTime;
+	zookeeperService zkService=new zookeeperService();
 	private final org.slf4j.Logger logger = LoggerFactory.getLogger(LogBoltBackup.class);
 
 	@Override
@@ -45,10 +36,10 @@ public class LogBoltBackup extends BaseRichBolt implements ITask {
 	@Override
 	public void prepare(Map map, TopologyContext context, OutputCollector collector) {
 		logger.info("status : prepare");
+		//zkService.initTest();
 		switch (PropertiesType.SAVE_TYPE) {
 		case HBASE:
 			hbaseService = new HBaseService();
-			hbasePro = hbaseService.init();
 			break;
 		default:
 			break;
@@ -64,7 +55,7 @@ public class LogBoltBackup extends BaseRichBolt implements ITask {
 		currentTime = new Date();
 		String line = tuple.getStringByField(LogSpout.DECLARE_FIELD);
 		UUID key = UUID.fromString(tuple.getStringByField(PropertiesType.MESSAGE_ID));
-		if (pendingHashMap.size() >= hbasePro.getHbase_batch_size()) {
+		if (pendingHashMap.size() >=Integer.parseInt(zkService.getConf(PropertiesType.HBASE_BATCH_SIZE))) {
 			switch (PropertiesType.SAVE_TYPE) {
 			case HBASE:
 				insert(InsertType.Bolt);
