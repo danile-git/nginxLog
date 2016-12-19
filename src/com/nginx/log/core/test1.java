@@ -1,24 +1,37 @@
 package com.nginx.log.core;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collection;
 import java.util.HashMap;
 
+import org.apache.hadoop.fs.FSDataOutputStream;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.Path;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.nginx.log.bean.Type;
 import com.nginx.log.util.Config;
+import com.nginx.log.util.HDFSUtil;
 import com.nginx.log.util.IOUtil;
 
-public class test<T>{
+public class test1<T> {
 
-	private final static Logger logger = LoggerFactory.getLogger(test.class);
-	public static void main(String[] arg) {
+	private final static Logger logger = LoggerFactory.getLogger(test1.class);
+
+	public static void main(String[] arg) throws IllegalArgumentException, IOException {
 		// getConf(test.class);
-
+		HDFSUtil hdfs = new HDFSUtil();
+		FileSystem fssytem = hdfs.initFileSystem();
+		FSDataOutputStream fd = fssytem.create(new Path("/storm_output/111"));
+		fd.write("rrr".getBytes());
+		fd.flush();
+		fd.close();
 	}
+
 	Config config = new Config();
+
 	public void initTest() {
 		try {
 			InputStream inputStream = IOUtil.fileInputStream("/core.xml");
@@ -35,7 +48,6 @@ public class test<T>{
 		logger.info("----------");
 
 	}
-
 
 	public Class<?> getConf(Class<?> type) {
 		Type converType = Type.None;

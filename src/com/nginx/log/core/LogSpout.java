@@ -43,6 +43,9 @@ public class LogSpout extends BaseRichSpout {
 		case KAFKA:
 			readKafka();
 			break;
+		case MYSQL:
+			
+			break;
 		}
 	}
 

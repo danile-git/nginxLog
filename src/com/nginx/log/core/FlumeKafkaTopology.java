@@ -7,10 +7,6 @@ import org.slf4j.*;
 import com.nginx.log.bean.*;
 import com.nginx.log.service.TopologyService;
 import com.nginx.log.service.zookeeperService;
-
- 
-
-
 import org.apache.storm.Config;
 import org.apache.storm.LocalCluster;
 import org.apache.storm.StormSubmitter;
