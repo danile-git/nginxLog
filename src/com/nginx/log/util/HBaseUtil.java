@@ -84,6 +84,8 @@ public class HBaseUtil implements Serializable {
 		try {
 			HConnection conne = getConnection();
 			tabe = conne.getTable(tableName);
+		//tabe.setWriteBufferSize(6 * 1024 * 1024);
+			//tabe.setAutoFlush(true);
 			tabe.put(put);
 			flg = true;
 		} catch (IOException e) {
@@ -96,6 +98,7 @@ public class HBaseUtil implements Serializable {
 		return flg;
 	}
 
+	
 	public static void Delete(String tableName, org.apache.hadoop.hbase.client.Delete delete) throws IOException {
 		HTableInterface tabe = null;
 		try {

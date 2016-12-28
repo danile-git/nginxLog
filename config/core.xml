@@ -1,20 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 	<cluster>
 
+	<property>
+			<name>storm.distribute</name>
+			<value>true</value>
+		</property>
+		<!-- hbase -->
+	<property>
+			<name>hbase.batch.size</name>
+			<value>3000</value>
+		</property>	
+	<property>
+			<name>task.batch.time</name>
+			<value>300</value>
+		</property>
+				<!--seconds-->
 <!-- storm -->
 	<property>
 			<name>storm.spout.size</name>
-			<value>3</value>
-		</property>
-
-	<property>
-			<name>storm.bolt.size</name>
 			<value>10</value>
 		</property>
 
+<!-- 10 -->
+	<property>
+			<name>storm.bolt.size</name>
+			<value>20</value>
+		</property>
+<!-- 6 -->
 	<property>
 			<name>storm.work.size</name>
-			<value>6</value>
+			<value>10</value>
 		</property>
 	<property>
 			<name>storm.num.ackers</name>
@@ -34,10 +49,7 @@
 			<value>/nginxlog/config</value>
 		</property>
 		
-	<property>
-			<name>storm.distribute</name>
-			<value>true</value>
-		</property>
+
 	<!-- <property>
 			<name>storm.nimbus</name>
 			<value>node1</value>
@@ -55,18 +67,7 @@
 	<property>
 			<name>storm.hosts</name>
 			<value>node2,node3,node4,node5,node6</value>
-		</property>
-<!-- hbase -->
-	<property>
-			<name>hbase.batch.size</name>
-			<value>1000</value>
 		</property>	
-		<!--seconds-->
-	<property>
-			<name>task.batch.time</name>
-			<value>300</value>
-		</property>	
-
 <!-- kafka -->
 	<property>
 			<name>bootstrap.servers</name>

@@ -113,6 +113,21 @@
     <libelement value="jar://$MODULE_DIR$/lib/zipfs.jar!/" />
     <libelement value="jar://$MODULE_DIR$/lib/zkclient-0.3.jar!/" />
     <libelement value="jar://$MODULE_DIR$/lib/zookeeper-3.4.5.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/asm-5.0.3.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/clojure-1.7.0.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/kryo-3.0.3.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/minlog-1.3.0.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/objenesis-2.1.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/reflectasm-1.10.1.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/storm-core-1.0.0.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/storm-rename-hack-1.0.0.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/disruptor-3.3.2.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/log4j-api-2.1.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/log4j-core-2.1.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/curator-client-2.4.0.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/curator-framework-2.4.0.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/curator-recipes-2.4.0.jar!/" />
+    <libelement value="jar://$MODULE_DIR$/lib/mail-1.4.jar!/" />
     <src_description expected_position="0">
       <src_folder value="file://$MODULE_DIR$/src" expected_position="0" />
       <src_folder value="file://$MODULE_DIR$/config" expected_position="1" />
@@ -140,15 +155,6 @@
       <library name="activation-1.1.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/activation-1.1.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="asm-4.0.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/asm-4.0.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -203,15 +209,6 @@
       <library name="clj-time-0.4.1.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/clj-time-0.4.1.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="clojure-1.5.1.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/clojure-1.5.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -365,33 +362,6 @@
       <library name="core.incubator-0.1.0.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/core.incubator-0.1.0.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="curator-client-1.3.3.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/curator-client-1.3.3.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="curator-framework-1.3.3.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/curator-framework-1.3.3.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="disruptor-2.10.4.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/disruptor-2.10.4.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -623,15 +593,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="kryo-2.21.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/kryo-2.21.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
       <library name="localedata.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/localedata.jar!/" />
@@ -695,15 +656,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="minlog-1.2.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/minlog-1.2.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
       <library name="mysql-connector-java-5.1.7-bin.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/mysql-connector-java-5.1.7-bin.jar!/" />
@@ -716,15 +668,6 @@
       <library name="netty-3.6.2.Final.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/netty-3.6.2.Final.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="objenesis-1.2.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/objenesis-1.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -920,15 +863,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="reflectasm-1.07-shaded.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/reflectasm-1.07-shaded.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
       <library name="ring-core-1.1.5.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/ring-core-1.1.5.jar!/" />
@@ -1013,15 +947,6 @@
       <library name="stax-api-1.0.1.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/stax-api-1.0.1.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="storm-core-0.9.6.jar">
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/lib/storm-core-0.9.6.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -1130,6 +1055,141 @@
       <library name="zookeeper-3.4.5.jar">
         <CLASSES>
           <root url="jar://$MODULE_DIR$/lib/zookeeper-3.4.5.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="asm-5.0.3.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/asm-5.0.3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="clojure-1.7.0.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/clojure-1.7.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="kryo-3.0.3.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/kryo-3.0.3.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="minlog-1.3.0.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/minlog-1.3.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="objenesis-2.1.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/objenesis-2.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="reflectasm-1.10.1.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/reflectasm-1.10.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="storm-core-1.0.0.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/storm-core-1.0.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="storm-rename-hack-1.0.0.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/storm-rename-hack-1.0.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="disruptor-3.3.2.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/disruptor-3.3.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="log4j-api-2.1.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/log4j-api-2.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="log4j-core-2.1.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/log4j-core-2.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="curator-client-2.4.0.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/curator-client-2.4.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="curator-framework-2.4.0.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/curator-framework-2.4.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="curator-recipes-2.4.0.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/curator-recipes-2.4.0.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="mail-1.4.jar">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/lib/mail-1.4.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

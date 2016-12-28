@@ -47,10 +47,11 @@ public class Task {
 			newTask(task, delay, tick);
 		}
 	}
-	static zookeeperService zkService=new zookeeperService();
+	
 	public static void addDelay(ITask task) {
 		if (!getDelayTaskMap().containsKey(task)) {
 			DelayTimerUtil delayTimerUtil=new DelayTimerUtil();
+			zookeeperService zkService=new zookeeperService();
 			delayTimerUtil.tick(Integer.parseInt(zkService.getConf(PropertiesType.TASK_BATCH_TIME)), task);
 		}
 	}

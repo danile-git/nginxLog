@@ -2,8 +2,6 @@ package com.nginx.log.util;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.util.concurrent.CountDownLatch;
-
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
@@ -33,6 +31,8 @@ public class zookeeperUtil implements Watcher, Serializable {
 		}
 		return zooKeeper;
 	}
+	
+	
 
 	// ª∫¥Ê ±º‰
 	// private static final int SESSION_TIME = 20000;

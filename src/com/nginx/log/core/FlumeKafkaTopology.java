@@ -6,7 +6,9 @@ import org.slf4j.*;
 
 import com.nginx.log.bean.*;
 import com.nginx.log.service.TopologyService;
+import com.nginx.log.service.ZookeeperLockService;
 import com.nginx.log.service.zookeeperService;
+
 import org.apache.storm.Config;
 import org.apache.storm.LocalCluster;
 import org.apache.storm.StormSubmitter;
@@ -15,17 +17,31 @@ import org.apache.storm.topology.TopologyBuilder;
 
 public class FlumeKafkaTopology {
 	private final static Logger logger = LoggerFactory.getLogger(FlumeKafkaTopology.class);
+	public static String index = "1";
+	public static int total = 15693294;
+	public static int rows = 3000;
+	public static int pages = (total % rows > 0 ? (total / rows) + 1 : total / rows);
 
 	public static void main(String[] _arguments) throws Exception {
 
 		try {
+			// 配置文件
 			zookeeperService zkService = new zookeeperService();
 			zkService.init();
 			zkService._toString();
 		} catch (Exception e) {
 			logger.error(e.getMessage());
-			return;
-			// TODO: handle exception
+			System.exit(1);
+		}
+		// 锁初始化
+		switch (PropertiesType.SOURCE_TYPE) {
+		case MYSQL:
+			ZookeeperLockService zklock = new ZookeeperLockService();
+			zklock.initData(index);
+			zklock.close();
+			break;
+		default:
+			break;
 		}
 		TopologyBuilder topologyBuilder = new TopologyBuilder();
 		TopologyPro topologyPro = new TopologyService().init();
@@ -38,7 +54,7 @@ public class FlumeKafkaTopology {
 		switch (topologyPro.getStorm_distribute()) {
 		case True:
 			conf.put(Config.TOPOLOGY_CLASSPATH, PropertiesType.FLUMEKAFKATOPOLOGY);// 在监控中，掉线提交的方法入口
-			conf.put(Config.NIMBUS_SEEDS,Arrays.asList(topologyPro.getStorm_seeds().split(",")));
+			conf.put(Config.NIMBUS_SEEDS, Arrays.asList(topologyPro.getStorm_seeds().split(",")));
 			conf.setNumWorkers(topologyPro.getStorm_work_size());
 			StormSubmitter.submitTopologyWithProgressBar(PropertiesType.FLUMEKAFKATOPOLOGY, conf, stormTopology);
 			break;
