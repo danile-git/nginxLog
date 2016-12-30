@@ -41,7 +41,7 @@ public enum RichClickEnum implements Serializable {
 	 * */
 	COVERED("covered"),
 	REMOTE_ADDR("remote_addr"),REQUEST_TIME("request_time"),REQUEST_TIMEZONE("request_timezone"),
-	REQUEST_MSEC("msec "),REQUEST_TYPE("request_type"),REQUEST_SOURCE("request"),TIME_LOCAL("time_local"),
+	REQUEST_MSEC("msec"),REQUEST_TYPE("request_type"),REQUEST_SOURCE("request"),TIME_LOCAL("time_local"),
 	REQUEST_HTTPVERSION("request_httpVersion"),REQUEST_STATUS("status"),RESPONSE_BODY_BYTES_SENT("body_bytes_sent"),
 	HTTP_REFERER("http_referer"),HTTP_USER_AGENT("http_user_agent"),RESPONSE_TIME("response_time"),
 	UPSTREAM_ADDR("upstream_addr"),URL_CALLBACK("CALLBACK"),URL_SCREEN("screen"),

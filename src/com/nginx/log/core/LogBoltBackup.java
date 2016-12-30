@@ -36,12 +36,13 @@ public class LogBoltBackup extends BaseRichBolt implements ITask {
 	zookeeperService zkService = new zookeeperService();
 	private final org.slf4j.Logger logger = LoggerFactory.getLogger(LogBoltBackup.class);
 	static int thread = 1;
+	Task task=null;
 
 	@Override
 	public void execute(Tuple tuple) {
 		backup(tuple);
-//	String line = tuple.getStringByField(LogSpout.DECLARE_FIELD);
-		//System.out.println("---------" + line);
+		// String line = tuple.getStringByField(LogSpout.DECLARE_FIELD);
+		// System.out.println("---------" + line);
 	}
 
 	@Override
@@ -58,17 +59,17 @@ public class LogBoltBackup extends BaseRichBolt implements ITask {
 		}
 		this.collector = collector;
 		currentTime = new Date();
-	
+		task=new Task();
+		task.addDelay(this);
 	}
 
 	// HashMap<UUID, String> pending = new HashMap<UUID, String>();
 	List<RichClick> pending = new ArrayList<RichClick>();
 
 	private void backup(Tuple tuple) {
-		
-		Task.addDelay(this);
-		currentTime = new Date();
 
+		currentTime = new Date();
+		
 		// UUID key =
 		// UUID.fromString(tuple.getStringByField(PropertiesType.MESSAGE_ID));
 		RichClick richclick = null;

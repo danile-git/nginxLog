@@ -69,9 +69,12 @@ public class zookeeperService implements Serializable {
 	}
 
 	private byte[] covertFileToStream() throws Exception {
+		//if()
 		InputStream inputStream = IOUtil.fileInputStream("/core.xml");
 		byte[] confbyte = IOUtil.readStream(inputStream);
 		inputStream.close();
+		//logger.info("core :"+confbyte.length);
+		
 		return confbyte;
 	}
 
@@ -88,8 +91,10 @@ public class zookeeperService implements Serializable {
 		} else {
 			try {
 				byte[] content = covertFileToStream();
+				
 				zookeeperPro = new ZookeeperPro();
 				HashMap<String, String> hashCfg = config.loadConfig(IOUtil.byteTOInputStream(content));
+				logger.info("get zkCfg hashCfg szie : "+hashCfg.size());
 				zookeeperPro.setZookeeper_path(hashCfg.get(PropertiesType.ZOOKEEPER_PATH));
 				zookeeperPro.setZookeeper_quorum(hashCfg.get(PropertiesType.ZOOKEEPER_QUORUM));
 				zookeeperPro.setSession_time(Integer.parseInt(hashCfg.get(PropertiesType.CFG_ZOOKEEPER_MS)));
@@ -107,6 +112,9 @@ public class zookeeperService implements Serializable {
 			if (hashMapConfig == null || hashMapConfig.size() <= 0) {
 				logger.info("loading data from zk" + this.toString());
 				zookeeperPro = getZookeeperCfg();
+				
+				//System.out.println("zkpro"+zookeeperPro.getZookeeper_quorum());
+				
 				byte[] result = getData(zookeeperPro.getZookeeper_path());
 				InputStream inputStream = IOUtil.byteTOInputStream(result);
 				hashMapConfig = config.loadConfig(inputStream);

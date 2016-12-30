@@ -17,7 +17,7 @@ public class MysqlUtil implements Serializable {
 	// private static final String DBURL = "jdbc:mysql://master:3306/nginx";//
 	// admin是你的数据库名?relaxAutoCommit=true&zeroDateTimeBehavior=convertToNull
 	//private static String HOST = "localhost";
-	private static String HOST="10.10.56.92";
+	private static String HOST="master1";
 	private String DBURL = "jdbc:mysql://%s:3306/%s?relaxAutoCommit=true&zeroDateTimeBehavior=convertToNull";// admin是你的数据库名
 	private static final String DBUSER = "root";
 	private static final String DBPASS = "";
@@ -47,14 +47,31 @@ public class MysqlUtil implements Serializable {
 		statement.setFetchSize(fetchSize);
 		return statement.executeQuery(sql);
 	}
-
+	public ResultSet executeQuery(String sql) throws SQLException, UnsupportedEncodingException {
+		Statement statement = connection().createStatement();
+		statement.setFetchSize(1000);
+		return statement.executeQuery(sql);
+	}
 	public boolean executeUpdate(String sql) throws SQLException, UnsupportedEncodingException {
 		Statement statement = connection().createStatement();
 		boolean flg = statement.executeUpdate(sql) > 0 ? true : false;
-		this.con.close();
+		close();
 		return flg;
 	}
-
+	public boolean executeUpdateWithoutClose(String sql) throws SQLException, UnsupportedEncodingException {
+		Statement statement = connection().createStatement();
+		boolean flg = statement.executeUpdate(sql) > 0 ? true : false;
+		return flg;
+	}
+	public void close(){
+		try {
+			if(this.con!=null)
+			this.con.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	// public void executeInsert() throws SQLException {
 	// Connection conn = DriverManager.getConnection(DBURL +
 	// "?rewriteBatchedStatements=true", DBUSER, DBPASS);

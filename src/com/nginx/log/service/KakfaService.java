@@ -29,6 +29,7 @@ public class KakfaService {
 	}
 	zookeeperService zkService = new zookeeperService();
 	private Kafka initConfig(){
+		
 		Kafka kafka=new Kafka();
 		Properties _properties = new Properties();
 		for (int i = 0; i < propertys.length; i++) {
@@ -38,6 +39,7 @@ public class KakfaService {
 		kafka.setGroupId(zkService.getConf(PropertiesType.KAFKA_GROUPID));
 		kafka.setTopic(zkService.getConf(PropertiesType.KAFKA_TOPIC));
 		kafka.setZookeeper(zkService.getConf(PropertiesType.ZOOKEEPER_QUORUM));
+		System.out.println("kafka setting :"+kafka.toString());
 		return kafka;
 	}
 }

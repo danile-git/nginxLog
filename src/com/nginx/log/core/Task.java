@@ -48,7 +48,7 @@ public class Task {
 		}
 	}
 	
-	public static void addDelay(ITask task) {
+	public  void addDelay(ITask task) {
 		if (!getDelayTaskMap().containsKey(task)) {
 			DelayTimerUtil delayTimerUtil=new DelayTimerUtil();
 			zookeeperService zkService=new zookeeperService();

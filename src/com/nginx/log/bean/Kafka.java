@@ -31,6 +31,11 @@ public class Kafka {
 	public void setTopic(String topic) {
 		this.topic = topic;
 	}
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return String.format("groupId: %s,zookeeper: %s ,topic : %s",this.groupId,this.zookeeper,this.topic);
+	}
 
 	
 }

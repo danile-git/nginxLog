@@ -55,6 +55,7 @@ public class LogSpout extends BaseRichSpout {
 	private synchronized  void collectorEmit(String msg) {
 		///UUID msgId = UUID.randomUUID();
 		//collector.emit(new Values(msg, msgId.toString()));
+		//System.out.println(msg);
 		collector.emit(new Values(msg));
 	}
 
@@ -70,11 +71,11 @@ public class LogSpout extends BaseRichSpout {
 			zkLock = new ZookeeperLockService();
 			index = getIndex();
 			if (index % 2 == 0) {
-				mysql = new MysqlUtil("cccc");
+				mysql = new MysqlUtil("shop_xinhuacang_com");
 			} else {
-				mysql = new MysqlUtil("dddd");
+				mysql = new MysqlUtil("shop_xinhuacang_com2");
 			}
-		
+			//mysql = new MysqlUtil("");
 			break;
 		case KAFKA:
 			consumerIterator = new KakfaService().init();
@@ -92,14 +93,14 @@ public class LogSpout extends BaseRichSpout {
 	}
 
 	private void readKafka() {
-		// System.out.println("read------");
+		//System.out.println("read------");
 		if (consumerIterator.hasNext() && HBaseUtil.IS_CONNECTION()) {
 			String msg = consumerIterator.next().message();
 			collectorEmit(msg);
 		}
 	}
 
-	static String sql = "SELECT  sid,vid,goods_name,special,reachtime,leavetime,lastmodtime,centerIp,urls,dop,don,vcnt,idx FROM `yt_visitlog`  limit %d,%d";
+	static String sql = "SELECT  sid,vid,goods_name,special,reachtime,leavetime,lastmodtime,centerIp,urls,dop,don,vcnt,idx FROM `yt_visitlog` order by vid limit %d,%d ";
 
 	private void readMySQL() {
 		if (index > FlumeKafkaTopology.pages)
@@ -108,11 +109,12 @@ public class LogSpout extends BaseRichSpout {
 		String sql2 = String.format(sql, index * FlumeKafkaTopology.rows, FlumeKafkaTopology.rows);
 		ResultSet result = null;
 		try {
-			result = mysql.executeQuery(sql2, FlumeKafkaTopology.rows);
+			result = mysql.executeQuery(sql2, FlumeKafkaTopology.fetch);
 			while (result.next()) {
 				collectorEmit(RichClickService.convertMySQL(result));
 			}
 			result.close();
+			mysql.close();
 			index=getIndex();
 		} catch (Exception e) {
 			if (result != null)

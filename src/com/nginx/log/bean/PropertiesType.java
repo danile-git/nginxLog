@@ -18,7 +18,7 @@ public class PropertiesType implements Serializable{
 	/**
 	 * 导入类型<---------kafka ,hdfs
 	 */
-	public static final SourceType SOURCE_TYPE = SourceType.MYSQL;
+	public static final SourceType SOURCE_TYPE = SourceType.KAFKA;
 
 	public static final String LOGBOLTSAVE_ID = LogBoltSave.class.getSimpleName();
 	public static final String FLUMEKAFKATOPOLOGY = FlumeKafkaTopology.class.getSimpleName();

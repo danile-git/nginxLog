@@ -17,9 +17,10 @@ import org.apache.storm.topology.TopologyBuilder;
 
 public class FlumeKafkaTopology {
 	private final static Logger logger = LoggerFactory.getLogger(FlumeKafkaTopology.class);
-	public static String index = "1";
-	public static int total = 15693294;
-	public static int rows = 3000;
+	public static String index = "0";
+	public static int total = 22382406;
+	public static int fetch =100000;
+	public static int rows = 100000;
 	public static int pages = (total % rows > 0 ? (total / rows) + 1 : total / rows);
 
 	public static void main(String[] _arguments) throws Exception {

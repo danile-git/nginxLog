@@ -4,16 +4,7 @@
 		 <spout id="logSpout">
 		 	<class>com.nginx.log.core.LogSpout</class>
 		 	<parallelism>2</parallelism>
+		 	
 		 </spout>
 	</spouts>
-	<bolts>
-		<bolt id="logBolt">
-			<class>com.nginx.log.core.LogBoltBackup</class>
-		 	<parallelism>10</parallelism>
-		 	<group>
-				<type>shuffleGrouping</type>
-				<ref-id>logSpout</ref-id>
-		 	</group>
-		</bolt>
-	</bolts>
 </topology>	

@@ -1,5 +1,8 @@
 package com.nginx.log.util;
 
+import java.io.UnsupportedEncodingException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.UUID;
 
 import kafka.javaapi.producer.Producer;
@@ -18,33 +21,53 @@ public class test {
 	// Producer<String, String> producer = kafka.getProducer();
 
 	public static void main(String[] args) {
-		int progress;
-		try{
-		progress=Integer.parseInt(args[0]);
-		}catch(Exception e){
-			progress=10;
-		}
-		String topic = "xinhua";
-		KAFKAUtil kafka = new KAFKAUtil();
-		Producer<String, String> producer = kafka.getProducer();
-		int stage=0;
-	while(true){
-		stage++;
-		//	List<Put> puts=new ArrayList<Put>();
-		for (int i = 0; i <1000; i++) {
-			Thread thread = new TestRunnable(kafka, producer, topic, UUID.randomUUID());
-			thread.run();
-			//System.out.println(i);
-		}
-		System.out.println(stage);
-	
-		 try {
-			Thread.sleep(10);
-		} catch (InterruptedException e) {
+		int i = 9999999;
+		MysqlUtil my = new MysqlUtil("cccc");
+		try {
+			for (int j = 100; j < 200; j++) {
+				ResultSet rsult = my.executeQuery( String.format(" select vid from yt_visitlog order by vid limit %d,100000",j*100000));
+				while (rsult.next()) {
+					int vid = rsult.getInt(1);
+					my.executeUpdateWithoutClose(String.format("update  yt_visitlog set sequence=%d where vid=%d", i,
+							vid));
+					System.out.println(vid + "  __" + i);
+					i++;
+				}
+				rsult.close();
+				my.close();
+			}	
+
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+		// int progress;
+		// try{
+		// progress=Integer.parseInt(args[0]);
+		// }catch(Exception e){
+		// progress=10;
+		// }
+		// String topic = "xinhua";
+		// KAFKAUtil kafka = new KAFKAUtil();
+		// Producer<String, String> producer = kafka.getProducer();
+		// int stage=0;
+		// while(true){
+		// stage++;
+		// // List<Put> puts=new ArrayList<Put>();
+		// for (int i = 0; i <1000; i++) {
+		// Thread thread = new TestRunnable(kafka, producer, topic,
+		// UUID.randomUUID());
+		// thread.run();
+		// //System.out.println(i);
+		// }
+		// System.out.println(stage);
+		//
+		// try {
+		// Thread.sleep(10);
+		// } catch (InterruptedException e) {
+		// // TODO Auto-generated catch block
+		// e.printStackTrace();
+		// }
 
 		// HBaseService hBaseService = new HBaseService();
 		// HashMap<String, String> databaseHashMap;

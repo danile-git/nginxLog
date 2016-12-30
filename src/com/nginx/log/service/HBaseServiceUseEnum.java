@@ -19,7 +19,7 @@ public class HBaseServiceUseEnum implements Serializable {
 
 	HBaseUtil hbaseUtil = new HBaseUtil();
 
-	public static final String TABLE_NAME = "richclick2";
+	public static final String TABLE_NAME = "richclick";
 	public static final byte[] FAMILY = "info".getBytes();
 	public static final String CONNECT_CHART = "-";
 
